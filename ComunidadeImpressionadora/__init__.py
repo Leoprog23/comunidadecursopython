@@ -10,6 +10,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+import os
 
 
 # Colocando o site no ar:
@@ -18,7 +19,12 @@ from flask_login import LoginManager
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '8f492823342fedd2f68a1e0e526b5390'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///comunidade.db' # Criando o banco de dados (Será criado no mesmo local do arquivo main)
+# Criando um banco de dados no servidor online (Railway):
+if os.getenv('DATABASE_URL'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+else:
+    # Criando um banco de dados local
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///comunidade.db' # Criando o banco de dados (Será criado no mesmo local do arquivo main)
 
 Database = SQLAlchemy(app)
 criptografia = Bcrypt(app)
