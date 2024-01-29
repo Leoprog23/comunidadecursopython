@@ -1,1 +1,1 @@
-# comunidadecursopython
+Este projeto trata-se de um site onde se tem autenticação de login, formulários de criação de posts, inserção de foto de perfil direto do computador, a possibilidade de criar uma comunidade contendo vários usuários
